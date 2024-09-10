@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:instagram_ui_practice/widgets/custom_gridview.dart';
 import 'package:line_icons/line_icons.dart';
 
 class ContentPage extends StatelessWidget {
@@ -9,44 +10,42 @@ class ContentPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.blueGrey.shade50,
-      bottomNavigationBar: Container(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 20),
-          child: SafeArea(
-            child: GNav(
-              activeColor: Colors.blueGrey.shade50,
-              padding: const EdgeInsets.all(16),
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              gap: 8,
-              iconSize: 20,
-              tabs: const [
-                GButton(
-                  icon: LineIcons.home,
-                  backgroundColor: Colors.black,
-                  text: 'Home',
-                ),
-                GButton(
-                  icon: LineIcons.locationArrow,
-                  backgroundColor: Colors.black,
-                  text: 'Location',
-                ),
-                GButton(
-                  icon: Icons.add,
-                  backgroundColor: Colors.black,
-                  text: 'Add',
-                ),
-                GButton(
-                  icon: LineIcons.heart,
-                  backgroundColor: Colors.black,
-                  text: 'Likes',
-                ),
-                GButton(
-                  icon: LineIcons.user,
-                  backgroundColor: Colors.black,
-                  text: 'Profile',
-                ),
-              ],
-            ),
+      bottomNavigationBar: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 20),
+        child: SafeArea(
+          child: GNav(
+            activeColor: Colors.blueGrey.shade50,
+            padding: const EdgeInsets.all(16),
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            gap: 8,
+            iconSize: 20,
+            tabs: const [
+              GButton(
+                icon: LineIcons.home,
+                backgroundColor: Colors.black,
+                text: 'Home',
+              ),
+              GButton(
+                icon: LineIcons.locationArrow,
+                backgroundColor: Colors.black,
+                text: 'Location',
+              ),
+              GButton(
+                icon: Icons.add,
+                backgroundColor: Colors.black,
+                text: 'Add',
+              ),
+              GButton(
+                icon: LineIcons.heart,
+                backgroundColor: Colors.black,
+                text: 'Likes',
+              ),
+              GButton(
+                icon: LineIcons.user,
+                backgroundColor: Colors.black,
+                text: 'Profile',
+              ),
+            ],
           ),
         ),
       ),
@@ -62,7 +61,7 @@ class ContentPage extends StatelessWidget {
       body: Container(
         child: Column(
           children: [
-            Container(
+            SizedBox(
               height: 200,
               child: Row(
                 children: [
@@ -124,7 +123,7 @@ class ContentPage extends StatelessWidget {
                             const SizedBox(
                               height: 10,
                             ),
-                            Container(
+                            SizedBox(
                               height: 50,
                               child: Row(
                                 children: [
@@ -163,7 +162,7 @@ class ContentPage extends StatelessWidget {
                 ],
               ),
             ),
-            Container(
+            SizedBox(
               height: 120,
               child: ListView.builder(
                   scrollDirection: Axis.horizontal,
@@ -190,9 +189,9 @@ class ContentPage extends StatelessWidget {
                   }),
             ),
             const Divider(),
-            Container(
+            const SizedBox(
               height: 60,
-              child: const DefaultTabController(
+              child: DefaultTabController(
                 length: 3,
                 child: TabBar(tabs: [
                   Tab(
@@ -207,27 +206,10 @@ class ContentPage extends StatelessWidget {
                 ]),
               ),
             ),
-            Expanded(
-                child: Container(
-              child: GridView.builder(
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 3),
-                itemBuilder: (context, index) {
-                  return Container(
-                    margin: const EdgeInsets.all(10),
-                    height: 150,
-                    width: 150,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      image: const DecorationImage(
-                        fit: BoxFit.cover,
-                        image: NetworkImage(
-                            'https://c1.wallpaperflare.com/preview/72/58/378/dublin-landscape-river-ireland.jpg'),
-                      ),
-                    ),
-                  );
-                },
-              ),
+            const Expanded(
+                child: CustomGridView(
+              networkImage:
+                  'https://c1.wallpaperflare.com/preview/72/58/378/dublin-landscape-river-ireland.jpg',
             ))
           ],
         ),
